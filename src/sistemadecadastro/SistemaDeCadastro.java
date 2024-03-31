@@ -13,8 +13,8 @@ public class SistemaDeCadastro {
     public static void main(String[] args) {
         PessoaFisicaRepo pfRpo1 = new PessoaFisicaRepo();
 
-        PessoaFisica p1 = new PessoaFisica(1, "João Alfredo", "048.542.455-82", 20);
-        PessoaFisica p2 = new PessoaFisica(2, "Davi Rosa", "186.856.458-58", 22);
+        PessoaFisica p1 = new PessoaFisica(1, "Fulano", "048.542.455-82", 20);
+        PessoaFisica p2 = new PessoaFisica(2, "Beltrano", "186.856.458-58", 22);
 
         pfRpo1.inserir(p1);
         pfRpo1.inserir(p2);
