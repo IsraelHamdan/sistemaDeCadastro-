@@ -8,7 +8,8 @@ public class PessoaFisica extends Pessoa implements Serializable {
     private int idade;
 
     public PessoaFisica(int id,String nome, String cpf, int idade) {
-        super(id, nome);
+        setId(id);
+        setNome(nome);
         this.cpf = cpf;
         this.idade = idade;
 

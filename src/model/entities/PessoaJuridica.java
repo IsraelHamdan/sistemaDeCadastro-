@@ -10,7 +10,8 @@ import java.io.Serializable;
 public class PessoaJuridica extends Pessoa implements Serializable  {
     String cnpj; 
     public PessoaJuridica(int id, String nome,String cnpj) {
-        super(id, nome); 
+        setId(id);
+        setNome(nome);
         this.cnpj = cnpj;
     }
     public String getCnpj() {

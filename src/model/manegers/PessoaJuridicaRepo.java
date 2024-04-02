@@ -48,7 +48,7 @@ public class PessoaJuridicaRepo {
     }
 
     public ArrayList<PessoaJuridica> obterTodos() {
-        return new ArrayList<> (pessoasJuridicas);
+        return pessoasJuridicas;
     }
 
     public void persistir(String nomeArquivo) throws IOException {

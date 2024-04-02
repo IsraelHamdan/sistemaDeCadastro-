@@ -1,11 +1,11 @@
 package sistemadecadastro;
-
 import java.io.IOException;
+import java.util.ArrayList;
+
+import model.entities.PessoaFisica;
 import model.manegers.PessoaFisicaRepo;
 import model.manegers.PessoaJuridicaRepo;
-import model.entities.PessoaFisica;
 import model.entities.PessoaJuridica;
-import java.util.ArrayList;
 
 
 public class SistemaDeCadastro {
@@ -22,7 +22,7 @@ public class SistemaDeCadastro {
         String nameFile = "pessoas_fisicas_data.dat";
         try {
             pfRpo1.persistir(nameFile);
-            System.out.println("Dados inseri dados com sucesso no arquivo" + nameFile);
+            System.out.println("Dados inseridos com sucesso no arquivo: " + nameFile);
         } catch (IOException e) {
             System.out.println("Erro ao persistir os dados no arquivo: " + nameFile);
             e.printStackTrace();
@@ -40,8 +40,7 @@ public class SistemaDeCadastro {
         
         ArrayList<PessoaFisica> pessoasRecuperada = pfRepo2.obterTodos();
         for(PessoaFisica pessoa : pessoasRecuperada) {
-            System.out.println(""
-                    + "Id:" + pessoa.getId() + ","
+            System.out.println("Id:" + pessoa.getId() + ","
                     + "Nome:" + pessoa.getNome() + ","
                     + "CPF:" + pessoa.getCpf() + ","
                     + "Idade:" + pessoa.getIdade() + ","

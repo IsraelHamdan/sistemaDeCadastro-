@@ -27,8 +27,7 @@ public class PessoaFisicaRepo {
     }
 
     public PessoaFisica obter(int id) {
-        for (int p = 0; p < pessoasFisicas.size(); p++) {
-            PessoaFisica pessoaFisica = pessoasFisicas.get(p);
+        for (PessoaFisica pessoaFisica : pessoasFisicas) {
             if (pessoaFisica.getId() == id) {
                 return pessoaFisica;
             }
@@ -38,7 +37,7 @@ public class PessoaFisicaRepo {
     }
 
     public ArrayList<PessoaFisica> obterTodos() {
-        return new ArrayList<>(pessoasFisicas) ;
+        return pessoasFisicas ;
     }
 
     public void excluir(int id) {
