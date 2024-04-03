@@ -14,6 +14,11 @@ public class PessoaJuridica extends Pessoa implements Serializable  {
         setNome(nome);
         this.cnpj = cnpj;
     }
+
+    public PessoaJuridica() {
+
+    }
+
     public String getCnpj() {
         return this.cnpj = cnpj;
     }
