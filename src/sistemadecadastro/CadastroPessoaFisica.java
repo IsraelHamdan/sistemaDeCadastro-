@@ -41,16 +41,15 @@ public class CadastroPessoaFisica extends PessoaFisicaRepo  {
 
     }
 
-    public String createdPf () {
+    public void showPf () {
         ArrayList<PessoaFisica> pessoasRecuperada = pfRepo2.obterTodos();
         for(PessoaFisica pessoa : pessoasRecuperada) {
-            System.out.println("Id:" + pessoa.getId() + ","
-                    + "Nome:" + pessoa.getNome() + ","
-                    + "CPF:" + pessoa.getCpf() + ","
-                    + "Idade:" + pessoa.getIdade() + ","
+            System.out.println("Id:" + pessoa.getId() + "\n"
+                    + "Nome:" + pessoa.getNome() + "\n"
+                    + "CPF:" + pessoa.getCpf() + "\n"
+                    + "Idade:" + pessoa.getIdade() + "\n"
             );
 
         }
-        return null;
     }
 }

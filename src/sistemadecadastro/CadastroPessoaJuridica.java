@@ -1,9 +1,11 @@
 package sistemadecadastro;
 
+import model.entities.PessoaFisica;
 import model.entities.PessoaJuridica;
 import model.manegers.PessoaJuridicaRepo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CadastroPessoaJuridica extends PessoaJuridicaRepo {
     PessoaJuridicaRepo pjRepo1 = new PessoaJuridicaRepo();
@@ -18,7 +20,7 @@ public class CadastroPessoaJuridica extends PessoaJuridicaRepo {
     }
 
     String nameFilePj = "pessoas_juridicas_data.dat";
-    protected void filePj() {
+    protected void createFilePj() {
 
         try {
             pjRepo1.persistir(nameFilePj);
@@ -39,6 +41,17 @@ public class CadastroPessoaJuridica extends PessoaJuridicaRepo {
             System.out.println("Erro ao recuperar os dados do arquivo: "
                     + nameFilePj);
             e.printStackTrace();
+        }
+    }
+
+    public void showPj () {
+        ArrayList<PessoaJuridica> pessoasRecuperada = pjRepo2.obterTodos();
+        for(PessoaJuridica pessoa : pessoasRecuperada) {
+            System.out.println("Id:" + pessoa.getId() + "\n"
+                    + "Nome:" + pessoa.getNome() + "\n"
+                    + "CNPJ:" + pessoa.getCnpj() + "\n"
+            );
+
         }
     }
 
