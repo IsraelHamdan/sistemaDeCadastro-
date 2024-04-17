@@ -1,6 +1,5 @@
 package sistemadecadastro;
 
-import model.entities.PessoaFisica;
 import model.entities.PessoaJuridica;
 import model.manegers.PessoaJuridicaRepo;
 
@@ -20,13 +19,13 @@ public class CadastroPessoaJuridica extends PessoaJuridicaRepo {
     }
 
     String nameFilePj = "pessoas_juridicas_data.dat";
+
     protected void createFilePj() {
 
         try {
             pjRepo1.persistir(nameFilePj);
             System.out.println("Dados inseridos com sucesso no arquivo: " + nameFilePj);
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             System.out.println("Erro ao persistir os dados no arquivo: " + nameFilePj);
             e.printStackTrace();
         }
@@ -44,13 +43,12 @@ public class CadastroPessoaJuridica extends PessoaJuridicaRepo {
         }
     }
 
-    public void showPj () {
+    protected void showPj() {
         ArrayList<PessoaJuridica> pessoasRecuperada = pjRepo2.obterTodos();
-        for(PessoaJuridica pessoa : pessoasRecuperada) {
+        for (PessoaJuridica pessoa : pessoasRecuperada) {
             System.out.println("Id:" + pessoa.getId() + "\n"
                     + "Nome:" + pessoa.getNome() + "\n"
-                    + "CNPJ:" + pessoa.getCnpj() + "\n"
-            );
+                    + "CNPJ:" + pessoa.getCnpj() + "\n");
 
         }
     }
