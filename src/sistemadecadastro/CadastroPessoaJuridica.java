@@ -5,17 +5,26 @@ import model.manegers.PessoaJuridicaRepo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CadastroPessoaJuridica extends PessoaJuridicaRepo {
     PessoaJuridicaRepo pjRepo1 = new PessoaJuridicaRepo();
     PessoaJuridicaRepo pjRepo2 = new PessoaJuridicaRepo();
-
+    Scanner sc = new Scanner(System.in);
     protected void createPj() {
-        PessoaJuridica pj1 = new PessoaJuridica(1, "XPTO", "12.345.678/0001-00");
-        PessoaJuridica pj2 = new PessoaJuridica(2, "Lpto", "13.355.668/0702-01");
+        System.out.println("Informe o nome da pessoa física:");
+        String nome = sc.nextLine();
 
-        pjRepo1.inserir(pj1);
-        pjRepo1.inserir(pj2);
+        System.out.println("Informe o CNPJ da pessoa física:");
+        String cnpj = sc.nextLine();
+
+        System.out.println("Informe a id da pessoa juridica:");
+        int id = sc.nextInt();
+
+        PessoaJuridica novaPessoa = new PessoaJuridica(id, nome, cnpj);
+        pjRepo1.inserir(novaPessoa);
+
+        System.out.println("Pessoa física cadastrada com sucesso!");
     }
 
     String nameFilePj = "pessoas_juridicas_data.dat";

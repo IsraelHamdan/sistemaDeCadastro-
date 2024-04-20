@@ -3,20 +3,36 @@ package sistemadecadastro;
 import model.entities.PessoaFisica;
 import model.manegers.PessoaFisicaRepo;
 
+import javax.sound.midi.Soundbank;
+import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CadastroPessoaFisica extends PessoaFisicaRepo {
     PessoaFisicaRepo pfRpo1 = new PessoaFisicaRepo();
     PessoaFisicaRepo pfRepo2 = new PessoaFisicaRepo();
     static String nameFile = "pessoas_fisicas_data.dat";
+    Scanner sc = new Scanner(System.in);
 
     protected void createPf() {
-        PessoaFisica p1 = new PessoaFisica(1, "Fulano", "048.542.455-82", 20);
-        PessoaFisica p2 = new PessoaFisica(2, "Beltrano", "186.856.458-58", 22);
+        System.out.println("Informe o nome da pessoa física:");
+        String nome = sc.nextLine();
 
-        pfRpo1.inserir(p1);
-        pfRpo1.inserir(p2);
+        System.out.println("Informe o CPF da pessoa física:");
+        String cpf = sc.nextLine();
+
+        System.out.println("Informe a idade da pessoa física:");
+        int idade = sc.nextInt();
+
+        System.out.println("Informe o id dessa pessoa!");
+        int id = sc.nextInt();
+
+        PessoaFisica novaPessoa = new PessoaFisica(id, nome, cpf, idade);
+        pfRpo1.inserir(novaPessoa);
+
+        System.out.println("Pessoa física cadastrada com sucesso!");
     }
 
     protected void createfilePf() {

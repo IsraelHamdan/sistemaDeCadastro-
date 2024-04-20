@@ -1,8 +1,5 @@
 package sistemadecadastro;
 
-import model.entities.PessoaFisica;
-import model.entities.PessoaJuridica;
-
 import java.util.Scanner;
 
 public class SistemaDeCadastro {
