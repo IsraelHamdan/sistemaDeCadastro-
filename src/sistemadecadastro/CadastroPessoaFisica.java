@@ -13,10 +13,10 @@ import java.util.Scanner;
 public class CadastroPessoaFisica extends PessoaFisicaRepo {
     PessoaFisicaRepo pfRpo1 = new PessoaFisicaRepo();
     PessoaFisicaRepo pfRepo2 = new PessoaFisicaRepo();
-    static String nameFile = "pessoas_fisicas_data.dat";
+    static String nameFile = "pessoa-fisica-dat";
     Scanner sc = new Scanner(System.in);
 
-    protected void createPf() {
+    protected void createPf() throws IOException {
         System.out.println("Informe o nome da pessoa física:");
         String nome = sc.nextLine();
 
@@ -31,6 +31,7 @@ public class CadastroPessoaFisica extends PessoaFisicaRepo {
 
         PessoaFisica novaPessoa = new PessoaFisica(id, nome, cpf, idade);
         pfRpo1.inserir(novaPessoa);
+        pfRepo2.persistir("pessoa-fisicas.dat");
 
         System.out.println("Pessoa física cadastrada com sucesso!");
     }

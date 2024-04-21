@@ -1,10 +1,15 @@
 package sistemadecadastro;
 
+import model.entities.PessoaFisica;
+import model.manegers.PessoaFisicaRepo;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SistemaDeCadastro {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
         System.out.println("=============================== \n");
         System.out.println("""

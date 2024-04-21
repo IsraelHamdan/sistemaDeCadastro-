@@ -14,8 +14,12 @@ public class PessoaFisicaRepo {
 
     public void inserir(PessoaFisica pessoaFisica) {
         this.pessoasFisicas.add(pessoaFisica);
-
     }
+    // Método para exibir todas as pessoas físicas cadastradas
+    public void exibirpessoas() {
+        pessoasFisicas.forEach(System.out::println);
+    }
+
 
     public void alterar(PessoaFisica pessoaFisica) {
         for (int i = 0; i < pessoasFisicas.size(); i++) {
@@ -25,6 +29,7 @@ public class PessoaFisicaRepo {
             }
         }
     }
+
 
     public PessoaFisica obter(int id) {
         for (PessoaFisica pessoaFisica : pessoasFisicas) {
