@@ -19,56 +19,61 @@ public class CrudMethods {
         int idPessoa;
         String selection;
         String type;
-        switch (option) {
-            case "1":
-                System.out.println("F - Cadastrar pessoa física | J - Cadastrar pessoa jurídica");
-                selection = sc.next();
-                if (selection.equalsIgnoreCase("F")){
-                    cadastroPf.createPf();
-                    pfRepo.exibirpessoas();
-                } else if (selection.equalsIgnoreCase("J")) {
-                    cadastroPj.createPj();
-                    pjRepo.persistir("pessoas-juridicas.dat");
-                } else {
-                    System.out.println("Opção invalida");
-                }
-                break;
-            case "2":
-                System.out.println("F - Alterar pessoa física | J - Alterar pessoa jurídica");
-                type = sc.next();
-                if (type.equalsIgnoreCase("F")) {
-                    pfRepo.recuperar("pessoas-fisicas.dat");
-                    if (!cadastroPf.obterTodos().isEmpty()) {
-                        cadastroPf.showPf();
-                        System.out.println("Insira o id da pessoa que deseja alterar");
-                        idPessoa = sc.nextInt();
-                        PessoaFisica pessoaAlterada = pfRepo.obter(idPessoa);
-                        if (pessoaAlterada != null) {
-                            cadastroPf.alterar(pessoaAlterada);
-                        } else {
-                            System.out.println("Pessoa não encontrada");
-                        }
-                    }
-                } else if (type.equalsIgnoreCase("J")) {
-                    pjRepo.recuperar("pessoas-juridicas-dat");
-                    if(!cadastroPj.obterTodos().isEmpty()) {
-                        cadastroPj.showPj();
-                        System.out.println("Insira o id da pessoa que deseja alterar");
-                        idPessoa = sc.nextInt();
-                        PessoaJuridica pessoaAlterada = pjRepo.obter(idPessoa);
-                        if(pessoaAlterada != null) {
-                            cadastroPj.alterar(pessoaAlterada);
-                            pjRepo.persistir("pessoas-juridicas.dat");
-                        } else {
-                            System.out.println("Pessoa não encontrada");
-                        }
+        while (!option.equalsIgnoreCase("0")) {
+            switch (option) {
+                case "1":
+                    System.out.println("F - Cadastrar pessoa física | J - Cadastrar pessoa jurídica");
+                    selection = sc.next();
+                    if (selection.equalsIgnoreCase("F")){
+                        cadastroPf.createPf();
+                        pfRepo.exibirpessoas();
+                    } else if (selection.equalsIgnoreCase("J")) {
+                        cadastroPj.createPj();
+                        pjRepo.persistir("pessoas-juridicas.dat");
                     } else {
-                        System.out.println("Não há pessoas Juridicas cadastradas");
+                        System.out.println("Opção invalida");
                     }
-                }
-                break;
+                    break;
+                case "2":
+                    System.out.println("F - Alterar pessoa física | J - Alterar pessoa jurídica");
+                    type = sc.next();
+                    if (type.equalsIgnoreCase("F")) {
+                        if (!cadastroPf.obterTodos().isEmpty()) {
+                            pfRepo.exibirpessoas();
+                            System.out.println("Insira o id da pessoa que deseja alterar");
+                            idPessoa = sc.nextInt();
+                            PessoaFisica pessoaAlterada = pfRepo.obter(idPessoa);
+                            if (pessoaAlterada != null) {
+                                cadastroPf.alterar(pessoaAlterada);
+                            } else {
+                                System.out.println("Pessoa não encontrada");
+                            }
+                        }
+                    } else if (type.equalsIgnoreCase("J")) {
+                        pjRepo.recuperar("pessoas-juridicas-dat");
+                        if(!cadastroPj.obterTodos().isEmpty()) {
+                            cadastroPj.showPj();
+                            System.out.println("Insira o id da pessoa que deseja alterar");
+                            idPessoa = sc.nextInt();
+                            PessoaJuridica pessoaAlterada = pjRepo.obter(idPessoa);
+                            if(pessoaAlterada != null) {
+                                cadastroPj.alterar(pessoaAlterada);
+                                pjRepo.persistir("pessoas-juridicas.dat");
+                            } else {
+                                System.out.println("Pessoa não encontrada");
+                            }
+                        } else {
+                            System.out.println("Não há pessoas Juridicas cadastradas");
+                        }
+                    }
+                    break;
 
+                default:
+                    throw new IllegalStateException("Unexpected value: " + option);
+            }
+            break;
         }
+
     }
 
 }
