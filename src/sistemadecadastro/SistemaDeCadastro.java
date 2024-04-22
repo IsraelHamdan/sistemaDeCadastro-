@@ -10,6 +10,9 @@ import java.util.Scanner;
 public class SistemaDeCadastro {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Menu();
+    }
+    public static void Menu () throws IOException {
         Scanner sc = new Scanner(System.in);
         System.out.println("=============================== \n");
         System.out.println("""
@@ -24,9 +27,13 @@ public class SistemaDeCadastro {
                 """
         );
         String option = sc.next();
-        CrudMethods crudMethods = new CrudMethods();
-        crudMethods.Crud(option);
-
+        switch (option) {
+            case "1":
+                Menu.Create();
+                break;
+            case "2":
+                Menu.Alterar();
+                break;
+        }
     }
-
 }

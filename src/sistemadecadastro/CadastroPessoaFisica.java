@@ -8,15 +8,16 @@ import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CadastroPessoaFisica extends PessoaFisicaRepo {
-    PessoaFisicaRepo pfRpo1 = new PessoaFisicaRepo();
-    PessoaFisicaRepo pfRepo2 = new PessoaFisicaRepo();
+    static PessoaFisicaRepo pfRpo1 = new PessoaFisicaRepo();
+    static PessoaFisicaRepo pfRepo2 = new PessoaFisicaRepo();
     static String nameFile = "pessoa-fisica-dat";
-    Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
 
-    protected void createPf() throws IOException {
+    protected static void createPf() throws IOException {
         System.out.println("Informe o nome da pessoa física:");
         String nome = sc.nextLine();
 
@@ -34,6 +35,7 @@ public class CadastroPessoaFisica extends PessoaFisicaRepo {
         pfRepo2.persistir("pessoa-fisicas.dat");
 
         System.out.println("Pessoa física cadastrada com sucesso!");
+        SistemaDeCadastro.Menu();
     }
 
     protected void createfilePf() {
@@ -60,7 +62,7 @@ public class CadastroPessoaFisica extends PessoaFisicaRepo {
     }
 
     protected void showPf() {
-        ArrayList<PessoaFisica> pessoasRecuperada = pfRepo2.obterTodos();
+        List<PessoaFisica> pessoasRecuperada = pfRepo2.obterTodos();
         for (PessoaFisica pessoa : pessoasRecuperada) {
             System.out.println("Id:" + pessoa.getId() + "\n"
                     + "Nome:" + pessoa.getNome() + "\n"
