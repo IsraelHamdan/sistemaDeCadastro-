@@ -26,7 +26,7 @@ public class SistemaDeCadastro {
                 0 - finalizar programa\s
                 """
         );
-        String option = sc.next();
+        String option = sc.nextLine();
         switch (option) {
             case "1":
                 Menu.Create();
@@ -34,6 +34,10 @@ public class SistemaDeCadastro {
             case "2":
                 Menu.Alterar();
                 break;
+            case "3":
+                Menu.Excluir();
+            case "4":
+                Menu.buscarPeloId();
         }
     }
 }

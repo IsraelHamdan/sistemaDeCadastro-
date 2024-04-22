@@ -22,7 +22,6 @@ public class PessoaFisicaRepo {
     public static void exibirpessoas() {
         pessoasFisicas.forEach(System.out::println);
     }
-    
 
     public static void alterar() throws IOException {
         PessoaFisica pessoaFisica = new PessoaFisica();
@@ -31,6 +30,7 @@ public class PessoaFisicaRepo {
             System.out.println("Insira o id da pessoa que deseja alterar");
             int idPessoa = sc.nextInt();
             PessoaFisica pessoa = obter(idPessoa);
+            exibirPessoa(pessoa);
 
             if (pessoa != null) {
                 System.out.println("Qual o atributo que você quer modificar?");
@@ -39,8 +39,7 @@ public class PessoaFisicaRepo {
                 System.out.println("3 - Cpf");
 
                 int option = sc.nextInt();
-                sc.nextLine(); // Limpar a nova linha deixada por nextInt()
-
+                sc.nextLine();
                 switch (option) {
                     case 1:
                         System.out.println("Insira o novo nome");
@@ -61,9 +60,15 @@ public class PessoaFisicaRepo {
                         System.out.println("Opção inválida!");
                         break;
                 }
+                for (int i = 0; i < pessoasFisicas.size(); i++) {
+                    PessoaFisica pessoaFisicaAtual = pessoasFisicas.get(i);
+                    if (pessoaFisicaAtual.getId() == Pessoa.getId()) {
+                        pessoasFisicas.set(i, pessoa);
+                    }
+                }
 
                 // Exibir os dados atualizados da pessoa
-                pessoaFisica.exibir();
+                exibirPessoa(pessoa);
                 SistemaDeCadastro.Menu();
             } else {
                 System.out.println("Pessoa não encontrada");
@@ -85,6 +90,7 @@ public class PessoaFisicaRepo {
     public static PessoaFisica obter(int id) {
         for (PessoaFisica pessoaFisica : pessoasFisicas) {
             if (Pessoa.getId() == id) {
+                exibirPessoa(pessoaFisica);
                 return pessoaFisica;
             }
 
@@ -96,13 +102,11 @@ public class PessoaFisicaRepo {
         return pessoasFisicas ;
     }
 
-    public void excluir(int id) {
-        Iterator<PessoaFisica> iterator = pessoasFisicas.iterator();
-        while (iterator.hasNext()) {
-            PessoaFisica pessoa = iterator.next();
-            if (pessoa.getId() == id) {
-                iterator.remove();
-                return;
+    public static void excluir(int id ) {
+        PessoaFisica pessoa = obter(id);
+        for(int p = 0; p < pessoasFisicas.size(); p++) {
+            if (pessoa.getId() == pessoasFisicas.get(p).getId()) {
+                pessoasFisicas.remove(p);
             }
         }
     }

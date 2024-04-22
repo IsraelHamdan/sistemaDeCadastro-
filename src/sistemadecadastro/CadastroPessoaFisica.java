@@ -32,7 +32,7 @@ public class CadastroPessoaFisica extends PessoaFisicaRepo {
 
         PessoaFisica novaPessoa = new PessoaFisica(id, nome, cpf, idade);
         pfRpo1.inserir(novaPessoa);
-        pfRepo2.persistir("pessoa-fisicas.dat");
+
 
         System.out.println("Pessoa física cadastrada com sucesso!");
         SistemaDeCadastro.Menu();
