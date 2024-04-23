@@ -1,13 +1,12 @@
 package sistemadecadastro;
 
-import model.entities.PessoaFisica;
-import model.manegers.PessoaFisicaRepo;
+
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
-public class SistemaDeCadastro {
+public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Menu();
@@ -36,8 +35,20 @@ public class SistemaDeCadastro {
                 break;
             case "3":
                 Menu.Excluir();
+                break;
             case "4":
                 Menu.buscarPeloId();
+                break;
+            case "5":
+                Menu.ExibirPessoas();
+                break;
+            case "6":
+                Menu.Persisir();
+                break;
+            case "7":
+                Menu.Recuperar();
+                break;
         }
     }
+
 }

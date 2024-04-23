@@ -2,7 +2,7 @@ package model.manegers;
 
 import model.entities.Pessoa;
 import model.entities.PessoaFisica;
-import sistemadecadastro.SistemaDeCadastro;
+import sistemadecadastro.Main;
 
 import java.util.*;
 import java.io.*;
@@ -10,7 +10,7 @@ import java.io.*;
 public class PessoaFisicaRepo {
     static Scanner sc = new Scanner(System.in);
 
-    private static List<PessoaFisica> pessoasFisicas;
+    private static ArrayList<PessoaFisica> pessoasFisicas;
 
     public PessoaFisicaRepo() {
         pessoasFisicas = new ArrayList<>();
@@ -20,7 +20,9 @@ public class PessoaFisicaRepo {
         pessoasFisicas.add(pessoaFisica);
     }
     public static void exibirpessoas() {
-        pessoasFisicas.forEach(System.out::println);
+        for(int p = 0; p < pessoasFisicas.size(); p++) {
+            System.out.println(pessoasFisicas);
+        }
     }
 
     public static void alterar() throws IOException {
@@ -69,7 +71,7 @@ public class PessoaFisicaRepo {
 
                 // Exibir os dados atualizados da pessoa
                 exibirPessoa(pessoa);
-                SistemaDeCadastro.Menu();
+                Main.Menu();
             } else {
                 System.out.println("Pessoa não encontrada");
             }
@@ -98,7 +100,7 @@ public class PessoaFisicaRepo {
         return null;
     }
 
-    public static List<PessoaFisica> obterTodos() {
+    public static ArrayList<PessoaFisica> obterTodos() {
         return pessoasFisicas ;
     }
 

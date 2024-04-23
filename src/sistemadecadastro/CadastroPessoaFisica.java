@@ -3,18 +3,14 @@ package sistemadecadastro;
 import model.entities.PessoaFisica;
 import model.manegers.PessoaFisicaRepo;
 
-import javax.sound.midi.Soundbank;
-import javax.swing.*;
 import java.io.IOException;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CadastroPessoaFisica extends PessoaFisicaRepo {
     static PessoaFisicaRepo pfRpo1 = new PessoaFisicaRepo();
     static PessoaFisicaRepo pfRepo2 = new PessoaFisicaRepo();
-    static String nameFile = "pessoa-fisica-dat";
+
     static Scanner sc = new Scanner(System.in);
 
     protected static void createPf() throws IOException {
@@ -35,33 +31,12 @@ public class CadastroPessoaFisica extends PessoaFisicaRepo {
 
 
         System.out.println("Pessoa física cadastrada com sucesso!");
-        SistemaDeCadastro.Menu();
+        Main.Menu();
     }
 
-    protected void createfilePf() {
-        try {
-            pfRpo1.persistir(nameFile);
-            System.out.println("Dados inseridos com sucesso no arquivo: " + nameFile);
-        } catch (IOException e) {
-            System.out.println("Erro ao persistir os dados no arquivo: " + nameFile);
-            e.printStackTrace();
-        }
 
-    }
 
-    protected void recoverFilePf() {
-        try {
-            pfRepo2.recuperar(nameFile);
-            System.out.println("Dados obtidos com sucesso do arquivo:" + nameFile);
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Erro ao recuperar os dados do arquivo: "
-                    + nameFile);
-            e.printStackTrace();
-        }
-
-    }
-
-    protected void showPf() {
+    protected static void showPf() {
         List<PessoaFisica> pessoasRecuperada = pfRepo2.obterTodos();
         for (PessoaFisica pessoa : pessoasRecuperada) {
             System.out.println("Id:" + pessoa.getId() + "\n"
