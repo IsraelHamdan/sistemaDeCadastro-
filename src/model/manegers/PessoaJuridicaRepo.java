@@ -9,8 +9,10 @@ import java.util.*;
 import java.io.*;
 
 public class PessoaJuridicaRepo {
+    PessoaJuridica pessoaJ = new PessoaJuridica();
     static Scanner sc = new Scanner(System.in);
-    private static ArrayList<PessoaJuridica> pessoasJuridicas;
+
+    private  ArrayList<PessoaJuridica> pessoasJuridicas;
 
     public PessoaJuridicaRepo() {
         this.pessoasJuridicas = new ArrayList<>();
@@ -20,21 +22,21 @@ public class PessoaJuridicaRepo {
         this.pessoasJuridicas.add(pessoaJuridica);
     }
 
-    public static void exibirPessoaJuridica(PessoaJuridica pessoa) {
+    public  void exibirPessoaJuridica(PessoaJuridica pessoa) {
         System.out.println("Pessoa física modificada");
-        System.out.println(Pessoa.getId());
-        System.out.println(Pessoa.getNome());
-        System.out.println(PessoaJuridica.getCnpj());
+        System.out.println(pessoa.getId());
+        System.out.println(pessoa.getNome());
+        System.out.println(pessoa.getCnpj());
 
     }
-    public static void exibirPessoasJuridicas() {
+    public  void exibirPessoasJuridicas() {
         for(int p = 0; p < pessoasJuridicas.size(); p++) {
             System.out.println(pessoasJuridicas);
         }
     }
 
-    public static void alterar() throws IOException {
-        PessoaJuridica pessoaJ = new PessoaJuridica();
+    public  void alterar() throws IOException {
+
         if (!obterTodos().isEmpty()) {
             exibirPessoaJuridica(pessoaJ);
             System.out.println("Insira o id da pessoa que deseja alterar");
@@ -67,7 +69,7 @@ public class PessoaJuridicaRepo {
                 }
                 for (int pj = 0; pj < pessoasJuridicas.size(); pj++) {
                     PessoaJuridica pessoaJuridicaAtual = pessoasJuridicas.get(pj);
-                    if (pessoaJuridicaAtual.getId() == Pessoa.getId()) {
+                    if (pessoaJ.getId() == pessoaJuridicaAtual.getId()) {
                         pessoasJuridicas.set(pj, pessoa);
                     }
                 }
@@ -84,7 +86,7 @@ public class PessoaJuridicaRepo {
     }
 
 
-    public static PessoaJuridica obter(int id) {
+    public PessoaJuridica obter(int id) {
         for (int p = 0; p < pessoasJuridicas.size(); p++) {
             PessoaJuridica pessoaJuridica = pessoasJuridicas.get(p);
             if (pessoaJuridica.getId() == id) {
@@ -95,7 +97,7 @@ public class PessoaJuridicaRepo {
         return null;
     }
 
-    public static void excluir(int id ) {
+    public  void excluir(int id ) {
         PessoaJuridica pessoa = obter(id);
         for(int p = 0; p < pessoasJuridicas.size(); p++) {
             if (pessoa.getId() == pessoasJuridicas.get(p).getId()) {
@@ -104,7 +106,7 @@ public class PessoaJuridicaRepo {
         }
     }
 
-    public static ArrayList<PessoaJuridica> obterTodos() {
+    public  ArrayList<PessoaJuridica> obterTodos() {
         return pessoasJuridicas;
     }
 

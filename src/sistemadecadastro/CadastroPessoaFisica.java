@@ -10,12 +10,14 @@ import java.util.Scanner;
 public class CadastroPessoaFisica extends PessoaFisicaRepo {
     static PessoaFisicaRepo pfRpo1 = new PessoaFisicaRepo();
     static PessoaFisicaRepo pfRepo2 = new PessoaFisicaRepo();
+    PessoaFisica pessoaFisica = new PessoaFisica();
 
     static Scanner sc = new Scanner(System.in);
 
-    protected static void createPf() throws IOException {
+    public void createPf() throws IOException {
         System.out.println("Informe o nome da pessoa física:");
         String nome = sc.nextLine();
+        sc.nextLine();
 
         System.out.println("Informe o CPF da pessoa física:");
         String cpf = sc.nextLine();
@@ -36,11 +38,11 @@ public class CadastroPessoaFisica extends PessoaFisicaRepo {
 
 
 
-    protected static void showPf() {
+    public void showPf() {
         List<PessoaFisica> pessoasRecuperada = pfRepo2.obterTodos();
         for (PessoaFisica pessoa : pessoasRecuperada) {
             System.out.println("Id:" + pessoa.getId() + "\n"
-                    + "Nome:" + pessoa.getNome() + "\n"
+                    + "Nome:" + pessoaFisica.getNome() + "\n"
                     + "CPF:" + pessoa.getCpf() + "\n"
                     + "Idade:" + pessoa.getIdade() + "\n");
 

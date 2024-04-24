@@ -12,6 +12,7 @@ public class Main {
         Menu();
     }
     public static void Menu () throws IOException {
+        Menu menuOptions = new Menu();
         Scanner sc = new Scanner(System.in);
         System.out.println("=============================== \n");
         System.out.println("""
@@ -28,25 +29,25 @@ public class Main {
         String option = sc.nextLine();
         switch (option) {
             case "1":
-                Menu.Create();
+                menuOptions.Create();
                 break;
             case "2":
-                Menu.Alterar();
+                menuOptions.Alterar();
                 break;
             case "3":
-                Menu.Excluir();
+                menuOptions.Excluir();
                 break;
             case "4":
-                Menu.buscarPeloId();
+                menuOptions.buscarPeloId();
                 break;
             case "5":
-                Menu.ExibirPessoas();
+                menuOptions.ExibirPessoas();
                 break;
             case "6":
-                Menu.Persisir();
+                menuOptions.Persisir();
                 break;
             case "7":
-                Menu.Recuperar();
+                menuOptions.Recuperar();
                 break;
         }
     }

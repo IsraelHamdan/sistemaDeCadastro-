@@ -8,6 +8,7 @@ import java.util.*;
 import java.io.*;
 
 public class PessoaFisicaRepo {
+    PessoaFisica pessoaFisica = new PessoaFisica();
     static Scanner sc = new Scanner(System.in);
 
     private static ArrayList<PessoaFisica> pessoasFisicas;
@@ -19,14 +20,14 @@ public class PessoaFisicaRepo {
     public void inserir(PessoaFisica pessoaFisica) {
         pessoasFisicas.add(pessoaFisica);
     }
-    public static void exibirpessoas() {
+    public  void exibirpessoas() {
         for(int p = 0; p < pessoasFisicas.size(); p++) {
             System.out.println(pessoasFisicas);
         }
     }
 
-    public static void alterar() throws IOException {
-        PessoaFisica pessoaFisica = new PessoaFisica();
+    public void alterar() throws IOException {
+
         if (!obterTodos().isEmpty()) {
             exibirpessoas();
             System.out.println("Insira o id da pessoa que deseja alterar");
@@ -64,7 +65,7 @@ public class PessoaFisicaRepo {
                 }
                 for (int i = 0; i < pessoasFisicas.size(); i++) {
                     PessoaFisica pessoaFisicaAtual = pessoasFisicas.get(i);
-                    if (pessoaFisicaAtual.getId() == Pessoa.getId()) {
+                    if (pessoaFisica.getId() == pessoaFisicaAtual.getId()) {
                         pessoasFisicas.set(i, pessoa);
                     }
                 }
@@ -72,26 +73,25 @@ public class PessoaFisicaRepo {
                 // Exibir os dados atualizados da pessoa
                 exibirPessoa(pessoa);
                 Main.Menu();
-            } else {
-                System.out.println("Pessoa não encontrada");
             }
         } else {
             System.out.println("Não há pessoas cadastradas");
         }
     }
 
-    public static void exibirPessoa(PessoaFisica pessoa) {
-        System.out.println("Pessoa física modificada");
-        System.out.println(pessoa.getId());
-        System.out.println(pessoa.getNome());
-        System.out.println(pessoa.getIdade());
-        System.out.println(pessoa.getCpf());
+    public  void exibirPessoa(PessoaFisica pessoa) {
+        System.out.println("======" +
+            "nome" + pessoa.getNome()
+            + "idade" + pessoa.getIdade()
+            + "cpf" + pessoa.getCpf()
+        );
     }
 
 
-    public static PessoaFisica obter(int id) {
-        for (PessoaFisica pessoaFisica : pessoasFisicas) {
-            if (Pessoa.getId() == id) {
+    public  PessoaFisica obter(int id) {
+        for (int p = 0; p < pessoasFisicas.size(); p++) {
+            PessoaFisica pesssoaFisicaEncontrada = pessoasFisicas.get(p);
+            if (pessoaFisica.getId() ==  pesssoaFisicaEncontrada.getId()) {
                 exibirPessoa(pessoaFisica);
                 return pessoaFisica;
             }
@@ -100,11 +100,11 @@ public class PessoaFisicaRepo {
         return null;
     }
 
-    public static ArrayList<PessoaFisica> obterTodos() {
+    public  ArrayList<PessoaFisica> obterTodos() {
         return pessoasFisicas ;
     }
 
-    public static void excluir(int id ) {
+    public  void excluir(int id ) {
         PessoaFisica pessoa = obter(id);
         for(int p = 0; p < pessoasFisicas.size(); p++) {
             if (pessoa.getId() == pessoasFisicas.get(p).getId()) {

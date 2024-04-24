@@ -1,6 +1,7 @@
 package sistemadecadastro;
 
 import model.manegers.PessoaFisicaRepo;
+
 import model.manegers.PessoaJuridicaRepo;
 
 
@@ -13,77 +14,85 @@ public class Menu {
     static String selected;
     static int pessoaId;
 
-    private final static String menssageOption = "Selecione F para pessoas físicas ou J para pessoas jurídicas";
-    private final static String actionSelected = "Insira o id da pessoa que você quer:";
 
-    public static void Create() throws IOException {
-        System.out.println(menssageOption);
+
+    
+    FileManager fileManager = new FileManager();
+    CadastroPessoaFisica cadastroPf =  new CadastroPessoaFisica();
+    CadastroPessoaJuridica cadastroPj =  new CadastroPessoaJuridica();
+    PessoaFisicaRepo pfRepo = new PessoaFisicaRepo();
+    PessoaJuridicaRepo pjRepo = new PessoaJuridicaRepo();
+
+
+
+    public void Create() throws IOException {
+        System.out.println("Você deseja cadastrar uma pessoa física ou juridica");
         selected = sc.next();
         if (selected.equalsIgnoreCase("F")) {
-            CadastroPessoaFisica.createPf();
-            CadastroPessoaFisica.showPf();
+            cadastroPf.createPf();
+            cadastroPf.showPf();
         } else if (selected.equalsIgnoreCase("J")) {
-            CadastroPessoaJuridica.createPj();
-            CadastroPessoaJuridica.showPj();
+            cadastroPj.createPj();
+            cadastroPj.showPj();
         }
     }
 
-    public static void Alterar() throws IOException {
-        System.out.println(menssageOption);
+    public  void Alterar() throws IOException {
+        System.out.println("Você deseja alterar uma pessoa física ou juridica");
         selected = sc.nextLine();
         if (selected.equalsIgnoreCase("F")) {
-            PessoaFisicaRepo.alterar();
+            pfRepo.alterar();
         } else if (selected.equals("J")) {
-            PessoaJuridicaRepo.alterar();
+            pjRepo.alterar();
         }
     }
 
-    public static void Excluir() throws IOException {
-        System.out.println(menssageOption);
+    public void Excluir() throws IOException {
+        System.out.println("Você deseja excluir uma pessoa física ou juridica");
         selected = sc.nextLine();
         if (!selected.equalsIgnoreCase("F")) {
-            System.out.println(actionSelected + "excluir");
+            System.out.println("Qual id da pessoa que você deseja excluir? ");
             pessoaId = sc.nextInt();
-            PessoaFisicaRepo.excluir(pessoaId);
+            pfRepo.excluir(pessoaId);
             System.out.println("Pessoa excluida com sucesso");
         } else if(!selected.equalsIgnoreCase("J")) {
-            System.out.println(actionSelected + "excluir");
+            System.out.println("Qual id da pessoa que você deseja excluir? ");
             pessoaId = sc.nextInt();
-            PessoaJuridicaRepo.excluir(pessoaId);
+            pjRepo.excluir(pessoaId);
             System.out.println("Pessoa excluida com sucesso");
         }
     }
 
-    public static void buscarPeloId() throws IOException {
-        System.out.println(menssageOption);
+    public void buscarPeloId() throws IOException {
+        System.out.println("Você deseja buscar uma pessoa física ou juridica");
         selected = sc.nextLine();
         if (!selected.equalsIgnoreCase("F")) {
-            System.out.println(actionSelected + "buscar");
+            System.out.println("Qual id da pessoa que você deseja buscar? ");
             pessoaId = sc.nextInt();
-            PessoaFisicaRepo.obter(pessoaId);
+            pfRepo.obter(pessoaId);
 
         } else if(!selected.equalsIgnoreCase("J")) {
-            System.out.println(actionSelected + "buscar");
+            System.out.println("Qual id da pessoa que você deseja buscar? ");
             int pessoaId = sc.nextInt();
-            PessoaJuridicaRepo.obter(pessoaId);
+            pjRepo.obter(pessoaId);
         }
     }
 
-    public static void ExibirPessoas(){
-        System.out.println(menssageOption);
+    public void ExibirPessoas(){
+        System.out.println("Você deseja exibir as pessoas físicas ou juridicas");
         selected = sc.nextLine();
         if(selected.equalsIgnoreCase("F")) {
-            PessoaFisicaRepo.exibirpessoas();
+            pfRepo.exibirpessoas();
         } else if (selected.equalsIgnoreCase("J")) {
-            PessoaJuridicaRepo.exibirPessoasJuridicas();
+            pjRepo.exibirPessoasJuridicas();
         }
     }
 
-    public static void Persisir () throws IOException {
-        FileManager.CreateFile();
+    public void Persisir () throws IOException {
+        fileManager.CreateFile();
     }
-    public static void Recuperar() throws IOException {
-        FileManager.recoverFile();
+    public  void Recuperar() throws IOException {
+        fileManager.recoverFile();
     }
 }
 

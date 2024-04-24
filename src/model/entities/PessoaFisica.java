@@ -4,35 +4,33 @@ import java.io.Serializable;
 
 public class PessoaFisica extends Pessoa implements Serializable {
 
-    private static String cpf;
-    private static int idade;
+    private String cpf;
+    private int idade;
 
     public PessoaFisica(int id, String nome, String cpf, int idade) {
         setId(id);
         setNome(nome);
-        PessoaFisica.cpf = cpf;
-        PessoaFisica.idade = idade;
+        this.cpf = cpf;
+        this.idade = idade;
     }
 
     public PessoaFisica() {
     }
 
-
-
-    public static String getCpf() {
+    public  String getCpf() {
         return cpf;
     }
 
-    public static void setCpf(String cpf) {
-        PessoaFisica.cpf = cpf;
+    public  void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public static int getIdade() {
+    public  int getIdade() {
         return idade;
     }
 
-    public static void setIdade(int idade) {
-        PessoaFisica.idade = idade;
+    public  void setIdade(int idade) {
+        this.idade = idade;
     }
 
 

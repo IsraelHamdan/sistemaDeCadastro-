@@ -12,17 +12,15 @@ import java.util.Scanner;
 import static sistemadecadastro.CadastroPessoaFisica.pfRpo1;
 
 public class FileManager {
-    static Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
-    static PessoaJuridicaRepo pjRepo1 =  new PessoaJuridicaRepo();
-    static PessoaJuridicaRepo pjRepo2 = new PessoaJuridicaRepo();
-
-    static PessoaFisicaRepo pfRepo1 = new PessoaFisicaRepo();
-    static PessoaFisicaRepo pfRepo2 = new PessoaFisicaRepo();
+     private PessoaJuridicaRepo pjRepo =  new PessoaJuridicaRepo();
+     private PessoaFisicaRepo pfRepo = new PessoaFisicaRepo();
+     
     private static String option;
     private static String messageOption = "Você deseja %s um arquivo de Pessoa física ou pessoa jurídica";
 
-    public static void CreateFile() throws IOException {
+    public  void CreateFile() throws IOException {
         System.out.printf(messageOption, "criar");
         option = sc.nextLine();
         if (option.equalsIgnoreCase("F")) {
@@ -37,7 +35,7 @@ public class FileManager {
         } else if (option.equalsIgnoreCase("J")) {
             String nameFilePj = "pessoas-juridicas.bin";
             try {
-                pjRepo1.persistir(nameFilePj);
+                pjRepo.persistir(nameFilePj);
                 System.out.println("Dados inseridos com sucesso no arquivo: " + nameFilePj);
             } catch (IOException e) {
                 System.out.println("Erro ao persistir os dados no arquivo: " + nameFilePj);
@@ -46,13 +44,13 @@ public class FileManager {
         }
     }
 
-    public static void recoverFile() {
+    public void recoverFile() {
         System.out.printf(messageOption, "abrir");
         option = sc.nextLine();
         if (option.equalsIgnoreCase("F")) {
             String nameFile = "pessoas-fisicas.bin";
             try {
-                pfRepo2.recuperar(nameFile);
+                pjRepo.recuperar(nameFile);
                 System.out.println("Dados obtidos com sucesso do arquivo:" + nameFile);
             } catch (IOException | ClassNotFoundException e) {
                 System.out.println("Erro ao recuperar os dados do arquivo: "
@@ -62,7 +60,7 @@ public class FileManager {
         } else if (option.equalsIgnoreCase("J")) {
             String nameFilePj = "pessoas-juridicas.bin";
             try {
-                pjRepo2.recuperar(nameFilePj);
+                pjRepo.recuperar(nameFilePj);
                 System.out.println("Dados obtidos com sucesso do arquivo:" + nameFilePj);
             } catch (IOException | ClassNotFoundException e) {
                 System.out.println("Erro ao recuperar os dados do arquivo: "

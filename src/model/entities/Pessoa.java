@@ -3,8 +3,8 @@ package model.entities;
 import java.io.Serializable;
 
 public class Pessoa implements Serializable {
-    private static int id;
-    private static String nome;
+    private  int id;
+    private  String nome;
     
     public Pessoa(int id, String nome) {
         this.id = id;
@@ -14,20 +14,20 @@ public class Pessoa implements Serializable {
     public Pessoa() {
     }
 
-    public static int getId() {
+    public  int getId() {
         return id;
     }
 
     public void setId(int id) {
-        Pessoa.id = id;
+        this.id = id;
     }
 
-    public static String getNome() {
-        return nome;
+    public  String getNome() {
+        return this.nome;
     }
 
     public void setNome(String nome) {
-        Pessoa.nome = nome;
+        this.nome = nome;
     }
 
     

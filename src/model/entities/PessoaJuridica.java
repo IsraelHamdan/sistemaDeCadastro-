@@ -3,24 +3,24 @@ package model.entities;
 import java.io.Serializable;
 
 public class PessoaJuridica extends Pessoa implements Serializable {
-    static String cnpj;
+     String cnpj;
 
     public PessoaJuridica(int id, String nome, String cnpj) {
         setId(id);
         setNome(nome);
-        PessoaJuridica.cnpj = cnpj;
+        this.cnpj = cnpj;
     }
 
     public PessoaJuridica() {
 
     }
 
-    public static String getCnpj() {
+    public String getCnpj() {
         return cnpj = cnpj;
     }
 
-    public static void setCnpj(String cnpj) {
-        PessoaJuridica.setCnpj(cnpj);
+    public void setCnpj(String cnpj) {
+        this.setCnpj(cnpj);
     }
 
     @Override
