@@ -8,11 +8,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CadastroPessoaJuridica extends PessoaJuridicaRepo {
-    PessoaJuridicaRepo pjRepo = new PessoaJuridicaRepo();
-    
-    static Scanner sc = new Scanner(System.in);
 
-    protected void createPj() throws IOException {
+    private final PessoaJuridicaRepo pjRepo;
+    private final MenuOptions menuOptions;
+    private final Scanner sc ;
+
+    public CadastroPessoaJuridica () {
+        pjRepo = new PessoaJuridicaRepo();
+        menuOptions = new MenuOptions();
+        sc = new Scanner(System.in);
+    }
+
+    protected void createPj()  {
         System.out.println("Informe o nome da pessoa juridica:");
         String nome = sc.nextLine();
 
@@ -26,7 +33,7 @@ public class CadastroPessoaJuridica extends PessoaJuridicaRepo {
         pjRepo.inserir(novaPessoa);
 
         System.out.println("Pessoa física cadastrada com sucesso!");
-        Main.Menu();
+        menuOptions.Menu();
     }
 
 

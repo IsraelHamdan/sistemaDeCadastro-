@@ -8,13 +8,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CadastroPessoaFisica extends PessoaFisicaRepo {
-    static PessoaFisicaRepo pfRpo1 = new PessoaFisicaRepo();
-    static PessoaFisicaRepo pfRepo2 = new PessoaFisicaRepo();
-    PessoaFisica pessoaFisica = new PessoaFisica();
+    private static PessoaFisicaRepo pfRpo1 ;
+    private static PessoaFisicaRepo pfRepo2 ;
+    private PessoaFisica pessoaFisica;
+    private MenuOptions menuOptions;
 
-    static Scanner sc = new Scanner(System.in);
+    private static Scanner sc ;
 
-    public void createPf() throws IOException {
+    public CadastroPessoaFisica () {
+        pfRpo1 = new PessoaFisicaRepo();
+        pfRepo2 = new PessoaFisicaRepo();
+        pessoaFisica = new PessoaFisica();
+        menuOptions = new MenuOptions();
+        sc = new Scanner(System.in);
+    }
+
+    public void createPf()  {
         System.out.println("Informe o nome da pessoa física:");
         String nome = sc.nextLine();
         sc.nextLine();
@@ -30,22 +39,10 @@ public class CadastroPessoaFisica extends PessoaFisicaRepo {
 
         PessoaFisica novaPessoa = new PessoaFisica(id, nome, cpf, idade);
         pfRpo1.inserir(novaPessoa);
+        String pessoa = pfRpo1.exibirPessoa(novaPessoa);
 
-
-        System.out.println("Pessoa física cadastrada com sucesso!");
-        Main.Menu();
+        System.out.println("Pessoa física cadastrada com sucesso!" + pessoa );
+        menuOptions.Menu();
     }
 
-
-
-    public void showPf() {
-        List<PessoaFisica> pessoasRecuperada = pfRepo2.obterTodos();
-        for (PessoaFisica pessoa : pessoasRecuperada) {
-            System.out.println("Id:" + pessoa.getId() + "\n"
-                    + "Nome:" + pessoaFisica.getNome() + "\n"
-                    + "CPF:" + pessoa.getCpf() + "\n"
-                    + "Idade:" + pessoa.getIdade() + "\n");
-
-        }
-    }
 }

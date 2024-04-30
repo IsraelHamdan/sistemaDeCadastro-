@@ -3,33 +3,38 @@ package model.manegers;
 import model.entities.Pessoa;
 import model.entities.PessoaFisica;
 import sistemadecadastro.Main;
+import sistemadecadastro.MenuOptions;
 
 import java.util.*;
 import java.io.*;
 
 public class PessoaFisicaRepo {
-    PessoaFisica pessoaFisica = new PessoaFisica();
-    static Scanner sc = new Scanner(System.in);
+    private PessoaFisica pessoaFisica ;
+    private static Scanner sc ;
+    private MenuOptions menuOptions;
 
     private static ArrayList<PessoaFisica> pessoasFisicas;
 
     public PessoaFisicaRepo() {
         pessoasFisicas = new ArrayList<>();
+        menuOptions = new MenuOptions();
+        sc = new Scanner(System.in);
+        pessoaFisica = new PessoaFisica();
     }
 
     public void inserir(PessoaFisica pessoaFisica) {
         pessoasFisicas.add(pessoaFisica);
     }
-    public  void exibirpessoas() {
+
+    public  void exibirPessoas() {
         for(int p = 0; p < pessoasFisicas.size(); p++) {
             System.out.println(pessoasFisicas);
         }
     }
 
-    public void alterar() throws IOException {
-
+    public void alterar()  {
         if (!obterTodos().isEmpty()) {
-            exibirpessoas();
+            exibirPessoas();
             System.out.println("Insira o id da pessoa que deseja alterar");
             int idPessoa = sc.nextInt();
             PessoaFisica pessoa = obter(idPessoa);
@@ -72,20 +77,19 @@ public class PessoaFisicaRepo {
 
                 // Exibir os dados atualizados da pessoa
                 exibirPessoa(pessoa);
-                Main.Menu();
+                menuOptions.Menu();
             }
         } else {
             System.out.println("Não há pessoas cadastradas");
         }
     }
-
-    public  void exibirPessoa(PessoaFisica pessoa) {
-        System.out.println("======" +
-            "nome" + pessoa.getNome()
-            + "idade" + pessoa.getIdade()
-            + "cpf" + pessoa.getCpf()
-        );
+    public String exibirPessoa(PessoaFisica pessoa) {
+        return "\n"+ "nome: " + pessoa.getNome() +  "\n" +
+                "idade: " + pessoa.getIdade() + "\n" +
+                 "cpf: " + pessoa.getCpf() + "\n" +
+                 "id: " + pessoa.getId();
     }
+
 
 
     public  PessoaFisica obter(int id) {
@@ -113,17 +117,23 @@ public class PessoaFisicaRepo {
         }
     }
 
-    public void persistir(String nomeArquivo) throws IOException {
+    public void persistir(String nomeArquivo) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(
                 new FileOutputStream(nomeArquivo))) {
             outputStream.writeObject(pessoasFisicas);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
+    public void recuperar(String nomeArquivo)  {
         try (ObjectInputStream inputStream = new ObjectInputStream(
                 new FileInputStream(nomeArquivo))) {
             pessoasFisicas = (ArrayList<PessoaFisica>) inputStream.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch ( IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -25,29 +25,30 @@ public class Menu {
 
 
 
-    public void Create() throws IOException {
+    public void Create()  {
         System.out.println("Você deseja cadastrar uma pessoa física ou juridica");
         selected = sc.next();
         if (selected.equalsIgnoreCase("F")) {
             cadastroPf.createPf();
-            cadastroPf.showPf();
         } else if (selected.equalsIgnoreCase("J")) {
             cadastroPj.createPj();
-            cadastroPj.showPj();
+
         }
     }
 
-    public  void Alterar() throws IOException {
-        System.out.println("Você deseja alterar uma pessoa física ou juridica");
-        selected = sc.nextLine();
+    public  void Alterar(){
+        System.out.println("F - Alterar pessoa física | J - Alterar pessoa juridica |");
+        selected = sc.next();
         if (selected.equalsIgnoreCase("F")) {
             pfRepo.alterar();
-        } else if (selected.equals("J")) {
+            pfRepo.exibirPessoas();
+        } else if (selected.equalsIgnoreCase("J")) {
             pjRepo.alterar();
+            pjRepo.exibirPessoasJuridicas();
         }
     }
 
-    public void Excluir() throws IOException {
+    public void Excluir()  {
         System.out.println("Você deseja excluir uma pessoa física ou juridica");
         selected = sc.nextLine();
         if (!selected.equalsIgnoreCase("F")) {
@@ -63,35 +64,34 @@ public class Menu {
         }
     }
 
-    public void buscarPeloId() throws IOException {
+    public void buscarPeloId() {
         System.out.println("Você deseja buscar uma pessoa física ou juridica");
         selected = sc.nextLine();
-        if (!selected.equalsIgnoreCase("F")) {
-            System.out.println("Qual id da pessoa que você deseja buscar? ");
+        if(selected.equalsIgnoreCase("F")) {
+            System.out.println("Insira o ID da pessoa qu você deseja buscar");
             pessoaId = sc.nextInt();
             pfRepo.obter(pessoaId);
-
-        } else if(!selected.equalsIgnoreCase("J")) {
-            System.out.println("Qual id da pessoa que você deseja buscar? ");
-            int pessoaId = sc.nextInt();
+        } else if (selected.equalsIgnoreCase("J")) {
+            System.out.println("Insira o ID da pessoa qu você deseja buscar");
+            pessoaId = sc.nextInt();
             pjRepo.obter(pessoaId);
         }
     }
 
-    public void ExibirPessoas(){
+    public void exibirPessoas(){
         System.out.println("Você deseja exibir as pessoas físicas ou juridicas");
         selected = sc.nextLine();
         if(selected.equalsIgnoreCase("F")) {
-            pfRepo.exibirpessoas();
+            pfRepo.exibirPessoas();
         } else if (selected.equalsIgnoreCase("J")) {
             pjRepo.exibirPessoasJuridicas();
         }
     }
 
-    public void Persisir () throws IOException {
+    public void persistir () {
         fileManager.CreateFile();
     }
-    public  void Recuperar() throws IOException {
+    public  void recuperar() {
         fileManager.recoverFile();
     }
 }

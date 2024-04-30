@@ -4,18 +4,23 @@ import model.entities.Pessoa;
 
 import model.entities.PessoaJuridica;
 import sistemadecadastro.Main;
+import sistemadecadastro.MenuOptions;
 
 import java.util.*;
 import java.io.*;
 
 public class PessoaJuridicaRepo {
-    PessoaJuridica pessoaJ = new PessoaJuridica();
-    static Scanner sc = new Scanner(System.in);
+    private PessoaJuridica pessoaJ ;
+    private static Scanner sc ;
+    private MenuOptions menuOptions;
 
     private  ArrayList<PessoaJuridica> pessoasJuridicas;
 
     public PessoaJuridicaRepo() {
         this.pessoasJuridicas = new ArrayList<>();
+        pessoaJ = new PessoaJuridica();
+        sc = new Scanner(System.in);
+        menuOptions = new MenuOptions();
     }
 
     public void inserir(PessoaJuridica pessoaJuridica) {
@@ -35,7 +40,7 @@ public class PessoaJuridicaRepo {
         }
     }
 
-    public  void alterar() throws IOException {
+    public  void alterar()  {
 
         if (!obterTodos().isEmpty()) {
             exibirPessoaJuridica(pessoaJ);
@@ -76,7 +81,7 @@ public class PessoaJuridicaRepo {
 
                 // Exibir os dados atualizados da pessoa
                 exibirPessoaJuridica(pessoa);
-                Main.Menu();
+                menuOptions.Menu();
             } else {
                 System.out.println("Pessoa não encontrada");
             }
@@ -110,15 +115,21 @@ public class PessoaJuridicaRepo {
         return pessoasJuridicas;
     }
 
-    public void persistir(String nomeArquivo) throws IOException {
+    public void persistir(String nomeArquivo)  {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
             outputStream.writeObject(pessoasJuridicas);
+        }  catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
+    public void recuperar(String nomeArquivo) {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
             pessoasJuridicas = (ArrayList<PessoaJuridica>) inputStream.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch ( IOException e) {
+            e.printStackTrace();
         }
     }
 }
