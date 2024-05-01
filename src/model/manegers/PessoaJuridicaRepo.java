@@ -3,6 +3,7 @@ package model.manegers;
 import model.entities.Pessoa;
 
 import model.entities.PessoaJuridica;
+import sistemadecadastro.CadastroPessoaJuridica;
 import sistemadecadastro.Main;
 import sistemadecadastro.MenuOptions;
 
@@ -13,6 +14,7 @@ public class PessoaJuridicaRepo {
     private PessoaJuridica pessoaJ ;
     private static Scanner sc ;
     private MenuOptions menuOptions;
+
 
     private  ArrayList<PessoaJuridica> pessoasJuridicas;
 
